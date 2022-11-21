@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import "express-async-errors";
-import cors from "cors";
+// import cors from "cors";
 import notFoundMiddleware from "./middleware/notFound.js";
 import errorHandlerMiddleware from "./middleware/errorHandler.js";
 import connectDB from "./db/connect.js";
@@ -10,11 +10,14 @@ import authRouter from "./routes/authRoutes.js";
 import jobsRouter from "./routes/jobsRoutes.js";
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ msg: "raviranjan mahto" });
+// app.get("/", (req, res) => {
+//   res.json({ msg: "hello" });
+// });
+app.get("/api/v1", (req, res) => {
+  res.json({ msg: "hello" });
 });
 
 app.use("/api/v1/auth", authRouter);
