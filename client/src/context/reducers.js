@@ -13,6 +13,9 @@ import {
   SETUP_USER_ERROR,
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from "./actions";
 import { initialState } from "./appContext";
 
@@ -22,7 +25,7 @@ const reducer = (state, action) => {
       ...state,
       showAlert: true,
       alertType: "danger",
-      alertText: "Please proide all values!",
+      alertText: "Please provide all values!",
     };
   }
   if (action.type === CLEAR_ALERT) {
@@ -123,6 +126,32 @@ const reducer = (state, action) => {
       token: null,
       userLocation: "",
       jobLocation: "",
+    };
+  }
+
+  if (action.type === UPDATE_USER_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+  if (action.type === UPDATE_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token: action.payload.token,
+      user: action.payload.user,
+      userLocation: action.payload.location,
+      jobLocation: action.payload.location,
+      showAlert: true,
+      alertType: "success",
+      alertText: "User Profile Updated!",
+    };
+  }
+  if (action.type === UPDATE_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
     };
   }
 
