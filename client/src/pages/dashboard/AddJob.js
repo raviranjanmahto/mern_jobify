@@ -5,6 +5,7 @@ import Wrapper from "../../assets/wrappers/DashboardFormPage";
 
 const AddJob = () => {
   const {
+    isLoading,
     isEditing,
     showAlert,
     displayAlert,
@@ -15,6 +16,8 @@ const AddJob = () => {
     jobTypeOptions,
     status,
     statusOptions,
+    handleChange,
+    clearValues,
   } = useAppContext();
 
   const handleSubmit = e => {
@@ -30,7 +33,7 @@ const AddJob = () => {
   const handleJobInput = e => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(`${name}:${value}`);
+    handleChange({ name, value });
   };
 
   return (
@@ -82,8 +85,18 @@ const AddJob = () => {
               type='submit'
               className='btn btn-block submit-btn'
               onClick={handleSubmit}
+              disabled={isLoading}
             >
               submit
+            </button>
+            <button
+              className='btn btn-block clear-btn'
+              onClick={e => {
+                e.preventDefault();
+                clearValues();
+              }}
+            >
+              clear
             </button>
           </div>
         </div>
