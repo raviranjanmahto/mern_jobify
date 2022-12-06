@@ -172,12 +172,33 @@ const reducer = (state, action) => {
       position: "",
       company: "",
       jobLocation: state.userLocation,
-      jobType: "full - time",
+      jobType: "full-time",
       status: "pending",
     };
     return {
       ...state,
       ...initialState,
+    };
+  }
+  if (action.type === CREATE_JOB_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+  if (action.type === CREATE_JOB_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "success",
+      alertText: "New Job Created!",
+    };
+  }
+  if (action.type === CREATE_JOB_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
     };
   }
 
