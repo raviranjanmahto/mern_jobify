@@ -9,7 +9,7 @@ const Stats = () => {
     showStats();
   }, []);
   if (isLoading) {
-    return <Loading center />;
+    // return <Loading center />;
   }
 
   return (
