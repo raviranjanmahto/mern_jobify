@@ -1,7 +1,6 @@
 import React from "react";
 import { useAppContext } from "../context/appContext";
 import { FaBug, FaCalendarCheck, FaSuitcaseRolling } from "react-icons/fa";
-
 import StatsItem from "./StatsItem";
 import Wrapper from "../assets/wrappers/StatsContainer";
 
