@@ -308,8 +308,8 @@ const AppProvider = ({ children }) => {
       console.log(error.response.data);
       // logoutUser();
     }
+    clearAlert();
   };
-  clearAlert();
 
   return (
     <AppContext.Provider
