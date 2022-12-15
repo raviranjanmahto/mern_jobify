@@ -32,6 +32,7 @@ import {
   EDIT_JOB_ERROR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
+  CLEAR_FILTERS,
 } from "./actions";
 
 const user = localStorage.getItem("user");
@@ -244,7 +245,12 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    let url = `/jobs`;
+    const { search, searchStatus, searchType, sort } = state;
+
+    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+    if (search) {
+      url = url + `&search=${search}`;
+    }
     dispatch({ type: GET_JOBS_BEGIN });
     try {
       const { data } = await authFetch(url); //authFetch.get(url) //byDefault its get method
@@ -317,7 +323,7 @@ const AppProvider = ({ children }) => {
   };
 
   const clearFilters = () => {
-    console.log("Clear filters");
+    dispatch({ type: CLEAR_FILTERS });
   };
 
   return (

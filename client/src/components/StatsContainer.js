@@ -16,7 +16,7 @@ const StatsContainer = () => {
       bcg: "#fcefc7",
     },
     {
-      title: "interview sheduled",
+      title: "interview scheduled",
       count: stats.interview || 0,
       icon: <FaCalendarCheck />,
       color: "#647acb",
