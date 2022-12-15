@@ -1,7 +1,7 @@
 import React from "react";
 import Wrapper from "../assets/wrappers/StatItem";
 
-const StatsItem = (count, title, icon, color, bcg) => {
+const StatsItem = ({ count, title, icon, color, bcg }) => {
   return (
     <Wrapper color={color} bcg={bcg}>
       <header>
