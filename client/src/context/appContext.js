@@ -4,12 +4,12 @@ import axios from "axios";
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
-  REGISTER_USER_BEGIN,
-  REGISTER_USER_SUCCESS,
-  REGISTER_USER_ERROR,
-  LOGIN_USER_BEGIN,
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_ERROR,
+  // REGISTER_USER_BEGIN,
+  // REGISTER_USER_SUCCESS,
+  // REGISTER_USER_ERROR,
+  // LOGIN_USER_BEGIN,
+  // LOGIN_USER_SUCCESS,
+  // LOGIN_USER_ERROR,
   SETUP_USER_BEGIN,
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
@@ -96,9 +96,7 @@ const AppProvider = ({ children }) => {
       return response;
     },
     error => {
-      // console.log(error.response);
       if (error.response.status === 401) {
-        // console.log("AUTH ERROR");
         logoutUser();
       }
       return Promise.reject(error);
@@ -124,45 +122,43 @@ const AppProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("location");
   };
-  const registerUser = async currentUser => {
-    dispatch({ type: REGISTER_USER_BEGIN });
-    try {
-      const response = await axios.post("/api/v1/auth/register", currentUser);
-      // console.log(response);
-      const { user, token, location } = response.data;
-      dispatch({
-        type: REGISTER_USER_SUCCESS,
-        payload: { user, token, location },
-      });
-      addUserToLocalStorage({ user, token, location });
-    } catch (error) {
-      // console.log(error.response);
-      dispatch({
-        type: REGISTER_USER_ERROR,
-        payload: { msg: error.response.data.msg },
-      });
-    }
-    clearAlert();
-  };
+  // const registerUser = async currentUser => {
+  //   dispatch({ type: REGISTER_USER_BEGIN });
+  //   try {
+  //     const response = await axios.post("/api/v1/auth/register", currentUser);
+  //     const { user, token, location } = response.data;
+  //     dispatch({
+  //       type: REGISTER_USER_SUCCESS,
+  //       payload: { user, token, location },
+  //     });
+  //     addUserToLocalStorage({ user, token, location });
+  //   } catch (error) {
+  //     dispatch({
+  //       type: REGISTER_USER_ERROR,
+  //       payload: { msg: error.response.data.msg },
+  //     });
+  //   }
+  //   clearAlert();
+  // };
 
-  const loginUser = async currentUser => {
-    dispatch({ type: LOGIN_USER_BEGIN });
-    try {
-      const { data } = await axios.post("/api/v1/auth/login", currentUser);
-      const { user, token, location } = data;
-      dispatch({
-        type: LOGIN_USER_SUCCESS,
-        payload: { user, token, location },
-      });
-      addUserToLocalStorage({ user, token, location });
-    } catch (error) {
-      dispatch({
-        type: LOGIN_USER_ERROR,
-        payload: { msg: error.response.data.msg },
-      });
-    }
-    clearAlert();
-  };
+  // const loginUser = async currentUser => {
+  //   dispatch({ type: LOGIN_USER_BEGIN });
+  //   try {
+  //     const { data } = await axios.post("/api/v1/auth/login", currentUser);
+  //     const { user, token, location } = data;
+  //     dispatch({
+  //       type: LOGIN_USER_SUCCESS,
+  //       payload: { user, token, location },
+  //     });
+  //     addUserToLocalStorage({ user, token, location });
+  //   } catch (error) {
+  //     dispatch({
+  //       type: LOGIN_USER_ERROR,
+  //       payload: { msg: error.response.data.msg },
+  //     });
+  //   }
+  //   clearAlert();
+  // };
 
   const setupUser = async ({ currentUser, endPoint, alertText }) => {
     dispatch({ type: SETUP_USER_BEGIN });
@@ -246,9 +242,9 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    const { search, searchStatus, searchType, sort } = state;
+    const { page, search, searchStatus, searchType, sort } = state;
 
-    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+    let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
     if (search) {
       url = url + `&search=${search}`;
     }
@@ -261,8 +257,7 @@ const AppProvider = ({ children }) => {
         payload: { jobs, totalJobs, numOfPages },
       });
     } catch (error) {
-      console.log(error.response);
-      // logoutUser();
+      logoutUser();
     }
     clearAlert();
   };
@@ -300,8 +295,7 @@ const AppProvider = ({ children }) => {
       await authFetch.delete(`/jobs/${jobId}`);
       getJobs();
     } catch (error) {
-      console.log(error.response);
-      // logoutUser()
+      logoutUser();
     }
   };
 
@@ -317,8 +311,7 @@ const AppProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error.response.data);
-      // logoutUser();
+      logoutUser();
     }
     clearAlert();
   };
@@ -336,8 +329,8 @@ const AppProvider = ({ children }) => {
       value={{
         ...state,
         displayAlert,
-        registerUser,
-        loginUser,
+        // registerUser,
+        // loginUser,
         setupUser,
         toggleSidebar,
         logoutUser,

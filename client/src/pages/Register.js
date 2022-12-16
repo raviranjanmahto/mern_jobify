@@ -19,8 +19,8 @@ const Register = () => {
     isLoading,
     showAlert,
     displayAlert,
-    registerUser,
-    loginUser,
+    // registerUser,
+    // loginUser,
     setupUser,
   } = useAppContext();
 
@@ -52,7 +52,6 @@ const Register = () => {
         alertText: "User Created! Redirecting...",
       });
     }
-    // console.log(values);
   };
   useEffect(() => {
     if (user) {
