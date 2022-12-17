@@ -186,7 +186,7 @@ const AppProvider = ({ children }) => {
       if (error.response.status === 500) {
         dispatch({
           type: SETUP_USER_ERROR,
-          payload: { msg: "Server down, Check your Internet connection!" },
+          payload: { msg: "Internal server error!" },
         });
         clearAlert();
         return;
