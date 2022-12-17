@@ -17,10 +17,11 @@ const Landing = () => {
             job <span>tracking</span> app
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
-            enim? Exercitationem eum quas amet molestias similique accusamus
-            repudiandae, ad, possimus ullam suscipit pariatur consequuntur nobis
-            delectus eos incidunt mollitia aliquam.
+            Jobify is the Job tracking application for the Student or working
+            professional who want to track his/her job status. Once the Job
+            status is change you can change status of your application by
+            updating Job status. Also you can update your profile and add job as
+            many as you want!
           </p>
           <Link to='/register' className='btn btn-hero'>
             Login/Register
