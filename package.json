@@ -10,8 +10,10 @@
     "build-client": "cd client && npm run build",
     "server": "nodemon server --ignore client",
     "client": "npm start --prefix client",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "main": "node server.js",
+    "start1": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "forCyclic": "below script for cyclic",
+    "build": "cd client && npm run build",
+    "start": "npm install && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
