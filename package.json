@@ -2,7 +2,7 @@
   "name": "jobify",
   "version": "1.0.0",
   "description": "A job tracker web application",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "setup-production": "npm run install-client && npm run build-client && npm install",
